@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT-компания</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { motion } = window["framer-motion"];
+
+    const Section = ({ children, id }) => (
+      <section id={id} className="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        {children}
+      </section>
+    );
+
+    const Hero = () => (
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl md:text-6xl font-bold mb-6"
+        >
+          Мы строим IT-будущее
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-lg md:text-xl text-gray-600 mb-8"
+        >
+          Инновационные решения для вашего бизнеса
+        </motion.p>
+        <motion.a
+          href="#contact"
+          whileHover={{ scale: 1.05 }}
+          className="px-8 py-3 bg-blue-600 text-white rounded-md shadow"
+        >
+          Начать
+        </motion.a>
+      </section>
+    );
+
+    const About = () => (
+      <Section id="about">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl font-bold mb-4">О компании</h2>
+            <p className="text-gray-600 mb-4">
+              Мы разрабатываем цифровые продукты, которые помогают
+              компаниям масштабироваться и улучшать взаимодействие с
+              клиентами.
+            </p>
+            <p className="text-gray-600">
+              Наши специалисты работают с самыми современными технологиями и
+              подходят к задачам с креативностью и вниманием к деталям.
+            </p>
+          </motion.div>
+          <motion.img
+            src="https://source.unsplash.com/600x400/?technology"
+            alt="Team"
+            className="rounded-lg shadow"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          />
+        </div>
+      </Section>
+    );
+
+    const features = [
+      {
+        icon: "💡",
+        title: "Инновации",
+        desc: "Используем передовые технологии для решения сложных задач.",
+      },
+      {
+        icon: "⚡",
+        title: "Скорость",
+        desc: "Быстро выводим продукты на рынок и поддерживаем их развитие.",
+      },
+      {
+        icon: "🤝",
+        title: "Партнерство",
+        desc: "Работаем в тесном сотрудничестве с клиентами.",
+      },
+    ];
+
+    const Features = () => (
+      <Section id="features">
+        <h2 className="text-3xl font-bold text-center mb-12">Преимущества</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {features.map((f, idx) => (
+            <motion.div
+              key={idx}
+              className="p-6 bg-white rounded-lg shadow text-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              <div className="text-4xl mb-4">{f.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{f.title}</h3>
+              <p className="text-gray-600">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+    );
+
+    const testimonials = [
+      {
+        quote: "Отличная команда профессионалов, результат превзошел ожидания!",
+        name: "Анна",
+      },
+      {
+        quote: "Наши продажи выросли на 40% благодаря их решениям.",
+        name: "Игорь",
+      },
+      {
+        quote: "Лучший партнер в цифровой трансформации.",
+        name: "Мария",
+      },
+    ];
+
+    const Testimonials = () => (
+      <Section id="testimonials">
+        <h2 className="text-3xl font-bold text-center mb-12">Отзывы</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={idx}
+              className="p-6 bg-white rounded-lg shadow"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ scale: 1.03 }}
+            >
+              <p className="text-gray-600 mb-4">“{t.quote}”</p>
+              <span className="font-semibold">{t.name}</span>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+    );
+
+    const CTA = () => (
+      <Section id="contact">
+        <motion.div
+          className="text-center bg-blue-600 text-white p-12 rounded-lg"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold mb-4">Готовы начать?</h2>
+          <p className="mb-6 text-blue-100">
+            Свяжитесь с нами и обсудим ваш проект.
+          </p>
+          <motion.a
+            href="#hero"
+            whileHover={{ scale: 1.05 }}
+            className="px-8 py-3 bg-white text-blue-600 rounded-md"
+          >
+            Написать
+          </motion.a>
+        </motion.div>
+      </Section>
+    );
+
+    const Footer = () => (
+      <footer className="py-12 text-center bg-gray-100">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="mb-4">© 2025 IT-компания</p>
+          <div className="flex justify-center space-x-6 text-xl">
+            <a href="#" className="hover:text-blue-600">VK</a>
+            <a href="#" className="hover:text-blue-600">TG</a>
+            <a href="#" className="hover:text-blue-600">FB</a>
+          </div>
+        </motion.div>
+      </footer>
+    );
+
+    const App = () => (
+      <div className="font-sans">
+        <Hero />
+        <About />
+        <Features />
+        <Testimonials />
+        <CTA />
+        <Footer />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
